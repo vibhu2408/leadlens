@@ -283,3 +283,4 @@ dialog::backdrop { background: rgba(10,12,16,.4); }
   .batch-head { flex-direction: column; }
   .import-card { padding: 18px; }
 }
+.nowrap { white-space: nowrap; }

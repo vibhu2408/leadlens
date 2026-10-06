@@ -181,7 +181,7 @@ function renderResults() {
     tile("Websites enriched", state.batch.enrich ? sites.ok || 0 : "—",
       state.batch.enrich ? `${sites.blocked || 0} blocked · ${(sites.unreachable || 0) + (sites.error || 0)} down · ${s.cache_hits} cached` : "offline pass"),
     tile("Gaps filled", state.batch.enrich ? filledTotal : "—",
-      state.batch.enrich ? `${filled.email || 0} emails, ${filled.phone || 0} phones from sites` : `processed in ${s.seconds}s`),
+      state.batch.enrich ? `${filled.email || 0} email${filled.email === 1 ? "" : "s"}, ${filled.phone || 0} phone${filled.phone === 1 ? "" : "s"}, ${filled.linkedin || 0} LinkedIn from sites` : `processed in ${s.seconds}s`),
   ].join("");
 
   const total = Math.max(1, TIERS.reduce((a, t) => a + s.tiers[t], 0));
@@ -248,7 +248,8 @@ function renderRows() {
       <td><div class="c-name">${esc(d.company || d.domain || "—")}</div>
           <div class="c-sub">${esc(d.domain || "no website")}${loc ? " · " + esc(loc) : ""}</div>
           <div class="c-sub">${esc(d.industry || "")}</div></td>
-      <td><div>${esc(d.contact_name || "—")}</div><div class="c-sub">${esc(d.title || "")}</div></td>
+      <td><div>${esc(d.contact_name || "—")}</div><div class="c-sub">${esc(d.title || "")}</div>
+          ${d.phone ? `<div class="c-sub nowrap">${esc(d.phone)}</div>` : ""}</td>
       <td><div class="c-sub" style="color:var(--text)">${esc(d.email || "—")}</div>
           <span class="pill ${EMAIL_PILL[l.email_status]}"${flags}>${esc(l.email_status)}${l.email_flags.length ? " · " + esc(l.email_flags[0]) : ""}</span></td>
       <td class="signals">${signals(l)}</td>

@@ -1,38 +1,15 @@
-# 2-minute video walkthrough: script
+# 2-minute video script
 
-Target length 1:45-2:00. Record the screen at 1440×900, with the app running locally and an `ANTHROPIC_API_KEY` set so the AI draft shows.
-Before recording, run the sample once so the batch loads instantly, and have a small real SaaSquatch export ready for the live-enrichment shot.
+**Setup:** fresh start (`rm -f leadlens.db && uvicorn app.main:app --port 8000`), a normal Chrome window at 110% zoom, no work tabs open. Record with Loom (screen + mic).
 
----
+| Time | Screen | Say |
+|---|---|---|
+| 0:00-0:15 | SaaSquatch: search results, then "No people data found" | "SaaSquatch finds companies fast, but the export still needs work: phones and emails are often N/A, and nothing tells you who to call first. I built LeadLens for that step." |
+| 0:15-0:30 | LeadLens import: upload `saasquatch_texas_city_energy.csv`, choose **Sales outreach**, keep **Enrich** on, click **Run** | "I upload the raw SaaSquatch export as-is. Columns are detected automatically. I pick a goal, and LeadLens cleans, dedupes, enriches, verifies and scores every lead." |
+| 0:30-0:50 | Results: point at **Gaps filled: 6** and the phones in the Contact column; open **Tara Energy** | "In two seconds it scraped each company's website, respecting robots.txt, and filled six gaps SaaSquatch had as N/A. It also flags that this email is a role inbox, which is risky for cold outreach, and picks up signals like hiring and tech stack." |
+| 0:50-1:15 | **+ New import** → choose **Acquisition targets**, switch **Enrich off** → **Try with sample data**; open the top A-tier lead | "For Caprae's own use case, acquisitions, there's an ETA/PE preset. This 38-year-old owner-run HVAC company scores 91. Every point is explained, so reps and deal teams can trust the ranking. Duplicates were merged automatically." |
+| 1:15-1:30 | Click **Draft email**, then **Tune ICP** and change the revenue range → **Apply** | "One click drafts a first-touch email from verified facts only. If the thesis changes, Tune ICP re-scores everything instantly, with no re-scraping." |
+| 1:30-1:45 | **Export**, choose CRM import (HubSpot), click Download | "Export is HubSpot-ready, with score, tier and reasons included, and invalid or disqualified leads are skipped." |
+| 1:45-2:00 | The README on GitHub | "Stack: FastAPI, an async scraper, MX email checks, fuzzy dedupe, and SQLite with a 7-day cache, shipped as one Docker container. The goal isn't more leads, it's better ones with the reasoning attached." |
 
-**[0:00-0:15] Problem** *(screen: SaaSquatch export open in a spreadsheet)*
-> "SaaSquatch is great at finding companies. But a raw export still has duplicates, emails that bounce, and businesses that closed years ago, and someone spends an hour per list deciding who's actually worth a call. I built LeadLens to automate that triage step."
-
-**[0:15-0:35] Import** *(screen: LeadLens import page)*
-> "You drop in the CSV. Column names are detected automatically. Then you pick the goal. Caprae sources acquisition targets, so there's an ETA/PE preset that ranks established, owner-run businesses with succession signals. There's also a standard B2B sales preset. Enrichment is on, so it'll check every website and mail server."
-
-*(click Run, and show the progress stages ticking: Dedupe → Enrich → Verify → Score)*
-
-**[0:35-1:05] Results and explainability** *(screen: batch view)*
-> "Top line: how many A-tier leads you have, how many duplicates were merged, what percent of emails are actually reachable, and how many missing emails and phones were filled from company websites.
-> Every lead gets a 0-100 score, and you can see why." *(open the top lead)* "Thirty-eight years in business, owner-operated, the website hasn't been updated since 2019, decision maker reachable. Each factor shows its points. Reps trust a score they can read."
-
-*(scroll to the Website section: tech, emails found, hiring, bot-walled status)*
-
-**[1:05-1:25] Workflow** *(screen: drawer → Draft email; then Tune ICP)*
-> "One click drafts a first-touch email with AI, grounded only in verified facts about this lead. For acquisitions it's written to an owner, so it's respectful and confidential.
-> If your thesis changes, say a bigger revenue band or adding a new industry, Tune ICP re-scores everything instantly with no re-scraping."
-
-**[1:25-1:45] Export and tech** *(screen: Export dialog → HubSpot CSV opens)*
-> "Export goes straight into HubSpot with score, tier and the reasons in the notes, and invalid or disqualified leads are skipped automatically.
-> Under the hood: FastAPI with an async scraper that respects robots.txt and detects CAPTCHAs instead of evading them, MX-record email checks, fuzzy dedupe, and a SQLite cache, so a domain is only scraped once a week across every batch. It ships as one Docker container to Cloud Run."
-
-**[1:45-2:00] Close**
-> "The point isn't more leads. It's fewer, better ones, with the reasoning attached, so the team spends its time on conversations. Thanks for watching."
-
----
-
-### Recording tips
-- Use OBS or Loom; 1080p, with the mouse highlight on.
-- Hide the browser bookmarks bar and any company/work tabs.
-- Zoom to 110% so the text is readable on a small player.
+**Tips:** do one practice run first. If you go over 2:00, cut the Tune ICP step.

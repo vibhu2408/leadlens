@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeadLens</title>
+  <meta name="description" content="Turn raw lead exports into a ranked, verified, CRM-ready call list.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='14' cy='14' r='9' fill='none' stroke='%234f46e5' stroke-width='4'/><path d='M21 21l7 7' stroke='%234f46e5' stroke-width='4' stroke-linecap='round'/></svg>">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" id="brandLink" aria-label="LeadLens home">
+    <svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true"><circle cx="14" cy="14" r="9" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M21 21l7 7" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>
+    <span>LeadLens</span>
+  </a>
+  <span class="tagline">Qualify lead exports before your reps touch them</span>
+  <div class="topbar-right">
+    <span id="aiPill" class="pill pill-muted" title="">Checking AI…</span>
+    <button class="btn btn-primary" id="newImportBtn">+ New import</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h2 class="side-title">Batches</h2>
+    <ul id="batchList" class="batch-list"><li class="muted small">No batches yet</li></ul>
+  </aside>
+
+  <main id="main">
+    <!-- ============ IMPORT VIEW ============ -->
+    <section id="importView" class="view">
+      <ol class="stepper" aria-label="Workflow">
+        <li class="active"><span>1</span>Import</li>
+        <li><span>2</span>Qualify</li>
+        <li><span>3</span>Export to CRM</li>
+      </ol>
+
+      <div class="card import-card">
+        <h1>Import leads</h1>
+        <p class="muted">Drop a CSV from SaaSquatch, Apollo, ZoomInfo, or any spreadsheet. Column names are detected automatically.</p>
+
+        <label class="dropzone" id="dropzone" for="fileInput">
+          <input type="file" id="fileInput" accept=".csv,.tsv,.txt" hidden>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 16V4m0 0l-4 4m4-4l4 4"/><path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3"/></svg>
+          <strong id="dropLabel">Drop CSV here or click to browse</strong>
+          <span class="muted small">Up to 5,000 rows · 10 MB</span>
+        </label>
+
+        <fieldset class="goal">
+          <legend>What are these leads for?</legend>
+          <label class="goal-option">
+            <input type="radio" name="preset" value="acquisition" checked>
+            <div>
+              <strong>Acquisition targets</strong>
+              <span class="muted small">ETA / PE deal sourcing. Ranks established, owner-run, lower-middle-market businesses with succession signals.</span>
+            </div>
+          </label>
+          <label class="goal-option">
+            <input type="radio" name="preset" value="sales">
+            <div>
+              <strong>Sales outreach</strong>
+              <span class="muted small">B2B outbound. Ranks reachable decision makers at growing, digitally active companies.</span>
+            </div>
+          </label>
+        </fieldset>
+
+        <label class="toggle">
+          <input type="checkbox" id="enrichToggle" checked>
+          <span class="toggle-ui" aria-hidden="true"></span>
+          <span><strong>Enrich &amp; verify online</strong><br><span class="muted small">Scrape each company website (robots.txt respected) and check that email domains accept mail. Turn off for an instant offline pass.</span></span>
+        </label>
+
+        <div class="actions">
+          <button class="btn btn-primary btn-lg" id="runBtn" disabled>Run LeadLens</button>
+          <button class="btn btn-ghost" id="sampleBtn">Try with sample data</button>
+        </div>
+        <p id="importError" class="error" role="alert" hidden></p>
+      </div>
+
+      <div class="how">
+        <div><b>Clean</b><span>Maps messy headers, normalizes domains, names and revenue ranges.</span></div>
+        <div><b>Dedupe</b><span>Merges repeats by email, domain + contact, or fuzzy company name.</span></div>
+        <div><b>Enrich</b><span>Pulls emails, phones, socials, tech stack, hiring and site freshness.</span></div>
+        <div><b>Verify</b><span>Flags bad syntax, disposable, role inboxes and dead mail domains.</span></div>
+        <div><b>Score</b><span>Explainable 0-100 ICP score, tiered A-D, with a reason for every point.</span></div>
+      </div>
+    </section>
+
+    <!-- ============ BATCH VIEW ============ -->
+    <section id="batchView" class="view" hidden>
+      <div class="batch-head">
+        <div>
+          <h1 id="batchName">Batch</h1>
+          <p class="muted small" id="batchMeta"></p>
+        </div>
+        <div class="batch-actions">
+          <button class="btn" id="icpBtn">Tune ICP</button>
+          <button class="btn btn-primary" id="exportBtn">Export</button>
+        </div>
+      </div>
+
+      <div id="progressCard" class="card progress-card" hidden>
+        <div class="progress-row"><strong id="progressStage">Working…</strong><span class="muted small" id="progressCount"></span></div>
+        <div class="bar"><div id="progressBar"></div></div>
+        <ol class="stages" id="stageList"></ol>
+      </div>
+
+      <div id="results" hidden>
+        <div class="tiles" id="tiles"></div>
+        <div class="dist" id="dist" aria-label="Tier distribution"></div>
+
+        <div class="filters">
+          <div class="chips" id="tierChips" role="group" aria-label="Filter by tier"></div>
+          <select id="emailFilter" aria-label="Filter by email">
+            <option value="">Any email</option>
+            <option value="ok">Deliverable (valid/unverified)</option>
+            <option value="valid">Verified only</option>
+            <option value="bad">Invalid or missing</option>
+          </select>
+          <select id="statusFilter" aria-label="Filter by status">
+            <option value="">Any status</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="qualified">Qualified</option>
+            <option value="disqualified">Disqualified</option>
+          </select>
+          <input type="search" id="search" placeholder="Search company, contact, city…" aria-label="Search leads">
+          <span class="muted small" id="resultCount"></span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="leads">
+            <thead><tr>
+              <th class="sortable" data-sort="score">Score</th>
+              <th class="sortable" data-sort="company">Company</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Signals</th>
+              <th>Status</th>
+            </tr></thead>
+            <tbody id="leadRows"></tbody>
+          </table>
+          <p class="empty muted" id="emptyRows" hidden>No leads match these filters.</p>
+        </div>
+        <p class="muted small kbd-hint">Tip: <kbd>j</kbd>/<kbd>k</kbd> to move, <kbd>Enter</kbd> to open, <kbd>Esc</kbd> to close.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Lead drawer -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="leadDrawer" aria-hidden="true" aria-labelledby="dTitle">
+  <div class="drawer-head">
+    <div>
+      <h2 id="dTitle"></h2>
+      <a id="dSite" class="small" target="_blank" rel="noopener"></a>
+    </div>
+    <button class="icon-btn" data-close aria-label="Close">✕</button>
+  </div>
+  <div class="drawer-body" id="dBody"></div>
+</aside>
+
+<!-- ICP drawer -->
+<aside class="drawer" id="icpDrawer" aria-hidden="true" aria-labelledby="icpTitle">
+  <div class="drawer-head">
+    <div><h2 id="icpTitle">Ideal customer profile</h2><p class="muted small">Re-scores instantly, with no re-scraping.</p></div>
+    <button class="icon-btn" data-close aria-label="Close">✕</button>
+  </div>
+  <form class="drawer-body icp-form" id="icpForm">
+    <label>Target industries <span class="muted small">(comma separated)</span><textarea name="industries" rows="3"></textarea></label>
+    <label>Exclude if mentions <textarea name="exclude_keywords" rows="2"></textarea></label>
+    <div class="two">
+      <label>Employees min<input type="number" name="emp_lo" min="0"></label>
+      <label>Employees max<input type="number" name="emp_hi" min="0"></label>
+    </div>
+    <div class="two">
+      <label>Revenue min ($M)<input type="number" name="rev_lo" min="0" step="0.1"></label>
+      <label>Revenue max ($M)<input type="number" name="rev_hi" min="0" step="0.1"></label>
+    </div>
+    <label>Min. years in business<input type="number" name="min_age_years" min="0"></label>
+    <label>Decision-maker titles<textarea name="titles" rows="2"></textarea></label>
+    <h3>Weights</h3>
+    <div id="weights"></div>
+    <div class="actions"><button class="btn btn-primary" type="submit">Apply &amp; re-score</button></div>
+  </form>
+</aside>
+
+<!-- Export dialog -->
+<dialog id="exportDialog">
+  <form method="dialog" class="export-form">
+    <h2>Export leads</h2>
+    <fieldset>
+      <legend>Format</legend>
+      <label class="radio"><input type="radio" name="fmt" value="hubspot" checked> <span><strong>CRM import (HubSpot)</strong><br><span class="muted small">Standard contact columns plus score, tier and reasons. Also maps cleanly into Salesforce and Pipedrive.</span></span></label>
+      <label class="radio"><input type="radio" name="fmt" value="full"> <span><strong>Full analysis CSV</strong><br><span class="muted small">Every field, enrichment signal, score reason and drafted opener.</span></span></label>
+    </fieldset>
+    <fieldset>
+      <legend>Include tiers</legend>
+      <div class="chips" id="exportTiers"></div>
+    </fieldset>
+    <label class="check"><input type="checkbox" id="excludeInvalid" checked> Skip invalid emails &amp; disqualified leads</label>
+    <p class="muted small" id="exportCount"></p>
+    <div class="actions">
+      <button class="btn" value="cancel">Cancel</button>
+      <button class="btn btn-primary" id="doExport" value="ok">Download CSV</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

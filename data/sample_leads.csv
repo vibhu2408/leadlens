@@ -1,0 +1,41 @@
+Company Name,Website,Industry,Employee Count,Revenue,Year Founded,City,State,Owner Name,Title,Email,Phone,LinkedIn URL
+Harborline HVAC Services,www.harborlinehvac.example,HVAC,45,$6.2M,1988,Tampa,FL,Robert Kessler,Owner,rkessler@harborlinehvac.example,(813) 555-0142,
+Harborline HVAC Services,https://harborlinehvac.example/,HVAC & Mechanical,45,,1988,Tampa,FL,ROBERT KESSLER,Owner,RKessler@harborlinehvac.example,,https://linkedin.com/in/robert-kessler-example
+Summit Ridge Plumbing LLC,summitridgeplumbing.example,Plumbing,28,$3.5M,1996,Denver,CO,Linda Marsh,President,linda@summitridgeplumbing.example,303-555-0198,
+SUMMIT RIDGE PLUMBING INC,,Plumbing,28,$3M-$4M,1996,Denver,CO,Linda Marsh,President,,303-555-0198,
+Keystone Precision Machining,keystoneprecision.example,Machine Shop,72,$11M,1979,Erie,PA,Walter Brandt,Founder & CEO,wbrandt@keystoneprecision.example,814-555-0110,
+Bluewater Logistics Group,bluewaterlogistics.example,Logistics & Trucking,120,$22M,2001,Savannah,GA,Marcus Hale,CEO,mhale@bluewaterlogistics.example,912-555-0133,https://linkedin.com/in/marcus-hale-example
+Greenfield Landscaping,greenfieldlandscape.example,Landscaping,18,$1.6M,2009,Raleigh,NC,Tom Alvarez,Owner,greenfieldlandscaping@gmail.com,919-555-0121,
+Prairie State Electrical Contractors,prairiestateelectric.example,Electrical,60,$9.8M,1985,Springfield,IL,Diane Foster,Owner,info@prairiestateelectric.example,217-555-0177,
+Coastal Pest Control,coastalpest.example,Pest Control,22,$2.4M,1999,Charleston,SC,Gary Pruitt,Owner,gary.pruitt@coastalpest.example,843-555-0164,
+Lakeside Family Dental,lakesidedental.example,Dental,14,$2.1M,2004,Madison,WI,Dr. Anita Shah,Owner / Dentist,ashah@lakesidedental.example,608-555-0109,
+Ironclad Fabrication Works,ironcladfab.example,Metal Fabrication,85,$14M,1972,Toledo,OH,Frank Novak,President,fnovak@ironcladfab.example,419-555-0150,
+Ironclad Fabrication Works,ironcladfab.example,Metal Fabrication,85,$14M,1972,Toledo,OH,Sarah Novak,Office Manager,snovak@ironcladfab.example,419-555-0151,
+Precision Books & Tax,precisionbookstax.example,Accounting,11,$1.2M,1994,Boise,ID,Helen Carter,Partner,helen@precisionbookstax.example,208-555-0186,
+Northstar Roofing Co.,northstarroofing.example,Roofing,40,$7.5M,1991,Minneapolis,MN,Erik Lindqvist,Owner,erik@northstarroofing.example,612-555-0140,
+Velocity Cloud Analytics,velocitycloud.example,Software / SaaS,35,$4M,2021,Austin,TX,Priya Raman,Co-Founder & CEO,priya@velocitycloud.example,512-555-0101,https://linkedin.com/in/priya-raman-example
+Brightpath Marketing Studio,brightpathstudio.example,Marketing Agency,26,$3.1M,2015,Nashville,TN,Kevin Ortiz,Head of Growth,kevin@brightpathstudio.example,615-555-0122,
+Metro Staffing Partners,metrostaffing.example,Staffing,95,$18M,2003,Phoenix,AZ,Janet Brooks,VP Operations,jbrooks@metrostaffing.example,602-555-0114,
+Redwood IT Solutions,redwoodit.example,IT Services / MSP,48,$8.4M,2006,Sacramento,CA,Daniel Kim,President,dkim@redwoodit.example,916-555-0158,https://linkedin.com/in/daniel-kim-example
+Golden Spoon Franchise #214,goldenspoon.example,Restaurant Franchise,30,$1.9M,2012,Orlando,FL,Mike Daniels,Franchisee,mike@goldenspoon.example,407-555-0190,
+Hope Community Foundation,hopecommunity.example,Non-Profit,12,$0.9M,1990,Detroit,MI,Grace Lee,Executive Director,grace@hopecommunity.example,313-555-0102,
+Atlas Industrial Supply,atlasindustrial.example,Industrial Distribution,110,$31M,1968,Houston,TX,Ray Whitfield,Owner,ray@atlasindustrial.example,713-555-0129,
+Pinecrest Veterinary Clinic,pinecrestvet.example,Veterinary,16,$2.6M,1997,Portland,ME,Dr. Laura Benson,Owner,lbenson@pinecrestvet.example,207-555-0144,
+Sparkle Pro Janitorial,sparklepro.example,Janitorial Services,65,$4.8M,1993,Columbus,OH,Luis Moreno,Owner,luis.moreno@sparklepro,614-555-0171,
+Delta Mechanical Inc,deltamech.example,HVAC,52,$8M,1983,Baton Rouge,LA,,,service@deltamech.example,225-555-0108,
+Quantum Leap Robotics,quantumleaprobotics.example,Robotics / Hardware,240,$60M,2016,Boston,MA,Alicia Chen,Chief Revenue Officer,achen@quantumleaprobotics.example,617-555-0135,https://linkedin.com/in/alicia-chen-example
+Sunbelt Insurance Agency,sunbeltinsurance.example,Insurance,19,$2.9M,1987,Birmingham,AL,Charles Whitman,Principal,cwhitman@sunbeltinsurance.example,205-555-0166,
+Cornerstone Construction,cornerstonebuild.example,Construction,75,$19M,1998,Kansas City,MO,Brian Walsh,Project Manager,bwalsh@cornerstonebuild.example,816-555-0181,
+Evergreen Organic Market,evergreenorganic.example,Retail / E-commerce,40,$5.5M,2018,Seattle,WA,Megan Ross,Director of E-commerce,megan@evergreenorganic.example,206-555-0117,
+Pacific Coast Freight,pacificcoastfreight.example,Trucking,58,$12M,1990,Fresno,CA,Steve Ramirez,Owner,steve@mailinator.com,559-555-0155,
+Granite State HVAC,granitestatehvac.example,HVAC,33,$4.4M,1992,Manchester,NH,Paul Gagnon,Owner,pgagnon@granitestatehvac.example,603-555-0124,
+Blue Ridge Electrical,blueridgeelectric.example,Electrical,24,"$2,800,000",2000,Asheville,NC,Wayne Hollis,Owner,wayne.hollis@yahoo.com,828-555-0179,
+Clearview Window Cleaning,clearviewwindows.example,Cleaning,6,$400K,2019,Tulsa,OK,Josh Patel,Owner,josh@clearviewwindows.example,918-555-0193,
+Midwest Tool & Die,midwesttooldie.example,Manufacturing,130,$24M,1965,Grand Rapids,MI,Gerald Schultz,Chairman & Owner,gschultz@midwesttooldie.example,616-555-0112,
+Lone Star Plumbing & Drain,lonestarplumbing.example,Plumbing,38,$5.1M,1989,San Antonio,TX,Rosa Delgado,Owner,rosa@lonestarplumbing.example,210-555-0161,
+Apex Data Systems,apexdata.example,Software,410,$85M,2010,Charlotte,NC,Ryan Mitchell,Account Executive,rmitchell@apexdata.example,704-555-0130,
+Heritage Accounting Group,heritageaccounting.example,Accounting,27,$3.8M,1981,Richmond,VA,Margaret Owens,Managing Partner,mowens@heritageaccounting.example,804-555-0147,
+Riverbend Pest Solutions,,Pest Control,15,$1.5M,2002,Little Rock,AR,Carl Jennings,Owner,carl.jennings@gmail.com,501-555-0185,
+Riverbend Pest Solutions LLC,,Pest Control,,,2002,Little Rock,AR,Carl Jennings,,,501-555-0185,
+Summit Peak Software,summitpeak.example,SaaS,85,$12M,2014,Salt Lake City,UT,Olivia Grant,VP Sales,ogrant@summitpeak.example,801-555-0116,https://linkedin.com/in/olivia-grant-example
+Tri-County Machine Shop,tricountymachine.example,Machine Shop,21,$2.2M,1976,Peoria,IL,Harold Beck,Owner,hbeck@tricountymachine.example,309-555-0138,

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+*.db-shm
+*.db-wal
+.env
+docs/SUBMISSION_ANSWERS_DRAFT.md

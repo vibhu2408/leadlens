@@ -17,7 +17,8 @@ There are two scoring presets:
 - **Acquisition targets (ETA / PE).** This is Caprae's own use case. It rewards established, owner-run, lower-middle-market businesses with succession signals: years in business, an owner-held contact, and a stale web presence.
 - **Sales outreach.** It rewards reachable decision makers at growing, digitally active companies: hiring, marketing tech in use, and recently updated sites.
 
-> Demo video: _add link_ · Live demo: _add link after deploying_
+> **Demo video (2 min):** https://www.loom.com/share/9bd0d9ce03f2485c93204bac1b991751
+> To run it yourself, see the Quick start below (about 2 minutes).
 
 ---
 

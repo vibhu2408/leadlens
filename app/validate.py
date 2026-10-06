@@ -21,6 +21,7 @@ EMAIL_RE = re.compile(r"^[a-z0-9._%+'-]+@[a-z0-9.-]+\.[a-z]{2,}$")
 ROLE_PREFIXES = {
     "info", "sales", "admin", "contact", "support", "hello", "office", "team", "help", "service",
     "billing", "marketing", "noreply", "no-reply", "webmaster", "enquiries", "inquiries", "careers", "jobs", "hr",
+    "customersupport", "customerservice", "customercare", "custserv", "orders", "reception", "frontdesk", "media", "press",
 }
 DISPOSABLE = {"mailinator.com", "10minutemail.com", "guerrillamail.com", "tempmail.com", "yopmail.com", "trashmail.com"}
 

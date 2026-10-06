@@ -46,6 +46,16 @@ def test_parse_csv_semicolon_and_first_last():
     assert rows[0]["domain"] == "acme.com"  # inferred from business email
 
 
+def test_saasquatch_layout_and_placeholders():
+    csv = (b"Company,Industry,Street,City,State,BBB Rating,Company Phone,Website\n"
+           b"Tara Energy,Electric Utility Company,N/A,Texas City,TX,N/A,N/A,taraenergy.com\n"
+           b"Calpine Corporation,Electric Utility Company,N/A,Texas City,TX,N/A,N/A,N/A\n")
+    rows, mapping = parse_csv(csv)
+    assert {"company", "industry", "city", "state", "phone", "website"} <= set(mapping)
+    assert rows[0]["phone"] == "" and rows[0]["domain"] == "taraenergy.com" and rows[0]["city"] == "Texas City"
+    assert rows[1]["website"] == "" and rows[1]["domain"] is None
+
+
 # ---------- dedupe ----------
 
 def test_company_key_strips_suffixes():

@@ -37,6 +37,10 @@ ALIASES: dict[str, list[str]] = {
 }
 
 
+# Exports fill missing cells with these; treat them as empty.
+PLACEHOLDERS = {"n/a", "na", "-", "--", "null", "none", "unknown", "not available", "#n/a"}
+
+
 def _norm_header(h: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", (h or "").lower()).strip()
 
@@ -111,7 +115,9 @@ def parse_csv(content: bytes) -> tuple[list[dict], dict[str, str]]:
     mapping = map_headers(headers)
     rows: list[dict] = []
     for raw in reader:
-        get = lambda f: (raw.get(mapping[f]) or "").strip() if f in mapping else ""  # noqa: E731
+        def get(f: str) -> str:
+            v = (raw.get(mapping[f]) or "").strip() if f in mapping else ""
+            return "" if v.lower() in PLACEHOLDERS else v
         contact = get("contact_name") or " ".join(p for p in (get("first_name"), get("last_name")) if p)
         if not any(get(f) for f in ("company", "website", "email")):
             continue  # blank / junk row
